@@ -1,4 +1,4 @@
-module dev.mccue.left_right {
+module dev.mccue.rosie {
     requires jetty.servlet.api;
     requires org.eclipse.jetty.server;
 
