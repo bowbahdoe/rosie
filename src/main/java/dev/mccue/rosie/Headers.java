@@ -127,6 +127,12 @@ public final class Headers {
         return new Headers(Map.of(k1, v1, k2, v2, k3, v3, k4, v4, k5, v5, k6, v6, k7, v7, k8, v8, k9, v9, k10, v10));
     }
 
+    public Headers with(String k, String v) {
+        final var headersCloned = new HashMap<>(this.headers);
+        headersCloned.put(k, v);
+        return new Headers(headersCloned);
+    }
+
     void writeTo(HttpServletResponse httpServletResponse) {
         for (final var header : this.headers.entrySet()) {
             // TODO: Support multiple values for a header.
