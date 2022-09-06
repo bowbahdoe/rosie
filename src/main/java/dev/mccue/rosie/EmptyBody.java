@@ -1,14 +1,12 @@
 package dev.mccue.rosie;
 
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 
-final class EmptyBody extends Body {
-    static EmptyBody INSTANCE = new EmptyBody();
-
-    private EmptyBody() {}
+enum EmptyBody implements Body {
+    INSTANCE;
 
     @Override
-    void writeTo(HttpServletResponse response) {
+    public void writeToStream(OutputStream outputStream) {
 
     }
 

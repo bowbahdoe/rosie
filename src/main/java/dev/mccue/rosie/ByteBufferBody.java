@@ -1,16 +1,17 @@
 package dev.mccue.rosie;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
 import java.util.Optional;
 
-record InputStreamBody(InputStream value) implements Body {
+record ByteBufferBody(ByteBuffer value) implements Body {
     @Override
     public void writeToStream(OutputStream outputStream) {
         try {
-            value.transferTo(outputStream);
+            Channels.newChannel(outputStream).write(value);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

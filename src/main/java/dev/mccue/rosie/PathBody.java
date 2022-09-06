@@ -1,16 +1,16 @@
 package dev.mccue.rosie;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.UncheckedIOException;
+import java.io.*;
+import java.nio.file.Path;
 import java.util.Optional;
 
-record InputStreamBody(InputStream value) implements Body {
+record PathBody(Path value) implements Body {
     @Override
     public void writeToStream(OutputStream outputStream) {
-        try {
-            value.transferTo(outputStream);
+        try (var fileInputStream = new FileInputStream(value.toFile())) {
+            fileInputStream.transferTo(outputStream);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

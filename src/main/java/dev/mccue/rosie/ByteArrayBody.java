@@ -1,39 +1,26 @@
 package dev.mccue.rosie;
 
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
-final class ByteArrayBody extends Body {
-    private final byte[] value;
-
+record ByteArrayBody(byte[] value) implements Body {
     ByteArrayBody(byte[] value) {
         Objects.requireNonNull(value);
         this.value = Arrays.copyOf(value, value.length);
     }
 
     @Override
-    void writeTo(HttpServletResponse response) throws IOException {
-        response.getOutputStream().write(value);
+    public void writeToStream(OutputStream outputStream) {
+        new InputStreamBody(new ByteArrayInputStream(value))
+                .writeToStream(outputStream);
     }
 
     @Override
-    public boolean equals(Object o) {
-        return o instanceof ByteArrayBody byteArrayBody
-                && Arrays.equals(this.value, byteArrayBody.value);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(value);
-    }
-
-    @Override
-    public String toString() {
-        return "ByteArrayBody[" +
-                "value=" + Arrays.toString(value) +
-                ']';
+    public Optional<String> defaultContentType() {
+        return Optional.of("application/octet-stream");
     }
 }
 
