@@ -35,24 +35,6 @@ public interface Request {
     Map<String, String> headers();
 
     /**
-     * Will be an empty Optional
-     * if the content length was not given in the request.
-     */
-    Optional<String> contentType();
-
-    /**
-     * Will be an empty Optional
-     * if the content length was reported as negative.
-     */
-    Optional<Integer> contentLength();
-
-    /**
-     * Will be an empty Optional
-     * if the character encoding was not given in the request.
-     */
-    Optional<String> characterEncoding();
-
-    /**
      * Returns the SSL client certificate of the request, if one exists.
      */
     Optional<X509Certificate> sslClientCert();
