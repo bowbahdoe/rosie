@@ -5,9 +5,14 @@ import java.io.OutputStream;
 import java.io.UncheckedIOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
+import java.util.Objects;
 import java.util.Optional;
 
 record ByteBufferBody(ByteBuffer value) implements Body {
+    ByteBufferBody {
+        Objects.requireNonNull(value, "byte buffer value must not be null");
+    }
+
     @Override
     public void writeToStream(OutputStream outputStream) {
         try {

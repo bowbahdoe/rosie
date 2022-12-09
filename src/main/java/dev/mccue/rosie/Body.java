@@ -39,10 +39,18 @@ public interface Body {
         return EmptyBody.INSTANCE;
     }
 
+    /**
+     * Writes the body to the outputstream. If the body wraps any stateful resource,
+     * after writing that resource should be closed. This should be assumed to be only
+     * callable once.
+     *
+     * @param outputStream The output stream to write to.
+     */
     void writeToStream(OutputStream outputStream);
 
     /**
      * @return A hint to the content type that a given body type implies. Will be used to set the
+     * {@code Content-Type} header in a response if none is set explicitly.
      */
     default Optional<String> defaultContentType() {
         return Optional.empty();

@@ -14,7 +14,7 @@ record ByteArrayBody(byte[] value) implements Body {
 
     @Override
     public void writeToStream(OutputStream outputStream) {
-        new InputStreamBody(new ByteArrayInputStream(value))
+        Body.fromInputStream(new ByteArrayInputStream(value))
                 .writeToStream(outputStream);
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 record InputStreamBody(InputStream value) implements Body {
     @Override
     public void writeToStream(OutputStream outputStream) {
-        try {
+        try (var __ = this.value) {
             value.transferTo(outputStream);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
