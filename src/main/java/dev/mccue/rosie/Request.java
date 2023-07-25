@@ -6,9 +6,29 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * A request object, based on the structure Ring provides.
+ * An object combining the information that can be derived from the contents of
+ * an HTTP request and the properties of the transport it came on.
+ *
  * <p>
- * <a href="https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L37">...</a>
+ *     The overall purpose of this is to be a "least common denominator" for any http server,
+ *     whether that be servlet-based or otherwise.
+ * </p>
+ *
+ * <p>
+ *     The reason this is an interface and not a concrete class is to allow for consumers
+ *     and libraries to make and allow customized request objects which can derive more
+ *     information from the data in the request. For example, parsing the body as json
+ *     or using an auth header to inject information about and authenticated user.
+ * </p>
+ *
+ * <p>
+ *     For this purpose {@link DelegatingRequest} should be of use.
+ * </p>
+ *
+ * <p>
+ *     The overall idea and shape of data in here is entirely inspired by the structure provided by
+ *     Clojure's <a href="https://github.com/ring-clojure/ring/blob/1.9.0/ring-servlet/src/ring/util/servlet.clj#L37">ring</a>
+ * </p>
  */
 public interface Request {
     int serverPort();

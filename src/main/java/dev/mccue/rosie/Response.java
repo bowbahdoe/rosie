@@ -5,6 +5,9 @@ import java.util.Objects;
 
 /**
  * A response to an http request.
+ * @param status The status code to send back to the user.
+ * @param headers Any headers to include in the response.
+ * @param body The body to publish.
  */
 public record Response(
         int status,
