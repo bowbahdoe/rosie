@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UncheckedIOException;
+import java.util.Objects;
 import java.util.Optional;
 
 record InputStreamBody(InputStream value) implements Body {
+    InputStreamBody {
+        Objects.requireNonNull(value);
+    }
+
     @Override
     public void writeToStream(OutputStream outputStream) {
         try (var __ = this.value) {

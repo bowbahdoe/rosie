@@ -6,7 +6,7 @@
 
     <groupId>dev.mccue</groupId>
     <artifactId>rosie</artifactId>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -40,6 +40,21 @@
         <developerConnection>scm:git:ssh://github.com:bowbahdoe/rosie.git</developerConnection>
         <url>http://github.com/bowbahdoe/rosie/tree/main</url>
     </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>0.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

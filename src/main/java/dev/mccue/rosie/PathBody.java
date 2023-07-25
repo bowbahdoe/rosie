@@ -3,9 +3,14 @@ package dev.mccue.rosie;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Optional;
 
 record PathBody(Path value) implements Body {
+    PathBody {
+        Objects.requireNonNull(value);
+    }
+
     @Override
     public void writeToStream(OutputStream outputStream) {
         try {

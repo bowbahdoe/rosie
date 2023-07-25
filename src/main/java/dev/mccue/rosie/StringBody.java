@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 record StringBody(String value) implements Body {
-    public StringBody(String value) {
-        this.value = Objects.requireNonNull(value);;
+    StringBody {
+        Objects.requireNonNull(value);;
     }
 
     @Override

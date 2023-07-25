@@ -2,14 +2,12 @@ package dev.mccue.rosie;
 
 import java.io.ByteArrayInputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
 record ByteArrayBody(byte[] value) implements Body {
-    ByteArrayBody(byte[] value) {
+    ByteArrayBody {
         Objects.requireNonNull(value);
-        this.value = Arrays.copyOf(value, value.length);
     }
 
     @Override
