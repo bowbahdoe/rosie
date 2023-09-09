@@ -22,7 +22,7 @@ import java.util.Optional;
  * </p>
  *
  * <p>
- *     For this purpose {@link DelegatingRequest} should be of use.
+ *     For the above purpose {@link DelegatingRequest} should be of use.
  * </p>
  *
  * <p>
